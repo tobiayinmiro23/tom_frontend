@@ -11,14 +11,12 @@ export function GetAllPhotos({ setloading, setdataReady, setresult, seterror, pa
         url: `https://api.unsplash.com/photos/?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU&page=${page}&per_page=12`
     };
     axios.request(options).then(res => {
-        console.log(res)
         setloading(false)
         setresult(res?.data)
         setdataReady(true)
-    }).catch(err => {
+    }).catch(() => {
         setloading(false)
         seterror(true)
-        console.log(err)
         setdataReady(false)
     })
 }
@@ -30,11 +28,9 @@ export function LoadMorePhotos({ setloadMore, result, page }: loadMorePhotosI) {
         url: `https://api.unsplash.com/photos/?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU&page=${page}&per_page=12`
     };
     axios.request(options).then(res => {
-        console.log(res)
         res?.data.map((item: allPhotosMappedT) => result?.push(item))
         setloadMore(false)
-    }).catch(err => {
-        console.log(err)
+    }).catch(() => {
         setloadMore(false)
     })
 }
@@ -49,12 +45,13 @@ export function GetPhoto({ setloading, photoid, seterror, setphoto }: getPhotoI)
     axios.request(options).then(res => {
         setloading(false)
         setphoto(res?.data)
-    }).catch(err => {
+    }).catch(()=>{
         seterror(true)
-        console.log(err)
         setloading(false)
+    }
+        
 
-    })
+    )
 }
 // for signing up
 export const Signin = async ({ username, password, setloading, route, seterror }: signinI) => {
@@ -62,20 +59,16 @@ export const Signin = async ({ username, password, setloading, route, seterror }
     try {
         let response = axios({
             method: 'post',
-            // url: `https://tom-backend-sibt.onrender.com/${route}`,
             url: `https://tom-backend-sibt.onrender.com/${route}`,
-            // https://tom-backend-sibt.onrender.com/
             data: {
                 username,
                 password
             }
         })
         let data = await response
-        console.log(data)
         setloading(false)
         return data.data
-    } catch (err) {
-        console.log(err)
+    } catch {
         setloading(false)
         seterror(true)
     }
@@ -94,11 +87,9 @@ export const AddComment = async ({ username, comments, photoid, usersid, setload
             }
         })
         let data = await response
-        console.log(data)
         setloading(false)
         return data.data
-    } catch (err) {
-        console.log(err)
+    } catch {
         setloading(false)
         seterror(true)
     }
@@ -117,11 +108,9 @@ export const UpdateComment = async ({ comments, commentid, setloading, photoid, 
             }
         })
         let data = await response
-        console.log(data)
         setloading(false)
         return data.data
-    } catch (err) {
-        console.log(err)
+    } catch {
         setloading(false)
         seterror(true)
     }
@@ -138,11 +127,9 @@ export const DeleteComment = async ({ commentid, setloading, route, seterror }: 
             }
         })
         let data = await response
-        console.log(data)
         setloading(false)
         return data.data
-    } catch (err) {
-        console.log(err)
+    } catch {
         setloading(false)
         seterror(true)
     }
@@ -155,13 +142,11 @@ export const GetComment = async ({ setloading, route, seterror }: commentI) => {
             url: `https://tom-backend-sibt.onrender.com/${route}`,
         })
         let data = await response
-        console.log(data)
         setloading(false)
         let reversedData = data.data.message.reverse()
-        // return data.data
+
         return reversedData
-    } catch (err) {
-        console.log(err)
+    } catch {
         setloading(false)
         seterror(true)
     }
