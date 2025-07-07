@@ -23,7 +23,7 @@ const Photo = () => {
 
     let route = 'comments'
     const editCommentRef = useRef(new Array())
-    editCommentRef.current = result.map((_, i) => editCommentRef.current[i] ?? React.createRef())
+    editCommentRef.current = result?.map((_, i) => editCommentRef.current[i] ?? React.createRef())
     const GetComments = async () => {
         let route = `comments/${photoid}`
         let response = GetComment({ setloading, route, setresult, seterror })
@@ -52,7 +52,7 @@ const Photo = () => {
     const handleUpdateComment = async (commentid: string) => {
         let response = UpdateComment({ comments, commentid, photoid, setloading, route, seterror })
         let data = await response
-        if (data.status === 'success') {
+        if (data?.status === 'success') {
             toast.success('comment successfully added')
             setresult(data.message)
         }
@@ -64,7 +64,7 @@ const Photo = () => {
     const handleAddComment = async () => {
         let response = AddComment({ username, comments, photoid, usersid, setloading, route, seterror })
         let data = await response
-        if (data.status === 'success') {
+        if (data?.status === 'success') {
             toast.success('comment successfully added')
             setresult(data.message)
         }
@@ -77,7 +77,7 @@ const Photo = () => {
     const deleteComment = async (commentid: string | undefined) => {
         let response = DeleteComment({ commentid, setloading, route, setresult, seterror })
         let data = await response
-        if (data.status === 'success') {
+        if (data?.status === 'success') {
             toast.success('comment successfully deleted')
             let route = `comments/${photoid}`
             GetComment({ setloading, route, setresult, seterror })
@@ -87,7 +87,7 @@ const Photo = () => {
     }
 
     return (
-        <div>
+        <div className='pb-[5rem]'>
             <Header />
             <div className='pt-[2rem]'>
                 {loading && <div ><div className='loader'><Loader /></div></div>}
@@ -95,39 +95,42 @@ const Photo = () => {
                     <div className='h-[fit-content]'><img src={photo?.urls.full} alt="" /></div>
                     <div className='flex items-start justify-between my-[1rem]'>
                         <h2 className='text-[1.1rem] font-bold '>{photo?.user.username}</h2>
-                        <div onClick={displayAddCommentModal}><CommentModal comments={comments} setcomments={setcomments} AddComment={handleAddComment} children={<MessageSquareText className='cursor-pointer' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>
+                        {photo?.id && <div onClick={displayAddCommentModal}><CommentModal comments={comments} setcomments={setcomments} AddComment={handleAddComment} children={<MessageSquareText className='cursor-pointer' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>}
                     </div>
                     <p>{photo?.alt_description !== null ? photo?.alt_description : photo?.description}</p>
                     {
-                        photo?.tags &&
+                        photo?.tags[0]?.title &&
                         <div>
                             <h2 className='text-[1.1rem] font-bold '>tags</h2>
                             <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.5rem] mr-[2rem]'>{item.title}</i>)}</div>
                         </div>
                     }
                     <div>
-                        <div>
-                            {
-                                result?.map((item, index) => {
-                                    return <div>
-                                        <h2 className='text-[1.1rem] font-bold '>Comments</h2>
-                                        <div key={item.id} className='mt-[0.7rem]'>
-                                            <div className='flex justify-between'>
-                                                <h3 className='font-bold'>{item.username}</h3>
-                                                {item.usersid === appData?.userid &&
-                                                    <div className='flex justify-end'>
-                                                        <DeleteCommentModal commentid={item.id} deleteComment={deleteComment} />
-                                                        <div onClick={() => displayUpdateCommentModal(index)} ><CommentModal comments={comments} commentid={item.id} setcomments={setcomments} index={index} handleUpdateComment={handleUpdateComment} children={<SquarePen className='ml-[1.2rem]' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>
-                                                    </div>
-                                                }
+                        {
+                            photo?.id &&
+                            <div >
+                                {
+                                    result?.map((item, index) => {
+                                        return <div>
+                                            <h2 className='text-[1.1rem] font-bold '>Comments</h2>
+                                            <div key={item.id} className='mt-[0.7rem]'>
+                                                <div className='flex justify-between'>
+                                                    <h3 className='font-bold'>{item.username}</h3>
+                                                    {item.usersid === appData?.userid &&
+                                                        <div className='flex justify-end'>
+                                                            <DeleteCommentModal commentid={item.id} deleteComment={deleteComment} />
+                                                            <div onClick={() => displayUpdateCommentModal(index)} ><CommentModal comments={comments} commentid={item.id} setcomments={setcomments} index={index} handleUpdateComment={handleUpdateComment} children={<SquarePen className='ml-[1.2rem]' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <p ref={editCommentRef.current[index]} >{item.comments}</p>
+                                                <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item.time}</p>
                                             </div>
-                                            <p ref={editCommentRef.current[index]} >{item.comments}</p>
-                                            <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item.time}</p>
                                         </div>
-                                    </div>
-                                })
-                            }
-                        </div>
+                                    })
+                                }
+                            </div>
+                        }
 
                     </div>
                 </div>
