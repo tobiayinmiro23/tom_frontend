@@ -1,7 +1,5 @@
-// import { button } from "./components/ui/button"
 import { useState } from 'react'
 import { commentDialogueI } from "../Types"
-// import { Button } from '../AllFiles'
 
 import {
     Dialog,
@@ -56,7 +54,7 @@ export default function CommentModal({ comments, setcomments, children, addcomme
                         </DialogHeader>
                         <div className="grid gap-4">
                             <div className="grid gap-3">
-                                <textarea value={comments} autoFocus onChange={(e) => handleSearchInput(e)} className="w-[100%] m-[auto] h-[10rem] bg-[light-grey] p-[0.6rem] border-[1px] border-[grey] outline-none rounded-[0.4rem]"></textarea>
+                                <textarea value={comments} autoFocus={false} onChange={(e) => handleSearchInput(e)} className="w-[100%] m-[auto] h-[10rem] bg-[light-grey] p-[0.6rem] border-[1px] border-[grey] outline-none rounded-[0.4rem]"></textarea>
                             </div>
                         </div>
                         <DialogFooter className=''>
