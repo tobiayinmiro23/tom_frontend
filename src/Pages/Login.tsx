@@ -23,17 +23,13 @@ const LoginPage = () => {
         if (window.location.pathname.split('/')[1] === 'signup') setsignup(true)
     }, [])
     const displayLogin = () => {
-        // window.location.pathname = 'login'
         setsignup(false)
         navigate('/login')
-        console.log(signup)
     }
     const handleSignIn = async () => {
-        console.log('sigin')
         let route = 'user/signin'
         let response = Signin({ username, password, route, setloading, seterror })
         let data = await response
-        console.log(data)
         if (data?.status === 'success') {
             toast.success('account created successfully please login')
             displayLogin()
@@ -43,11 +39,9 @@ const LoginPage = () => {
     }
 
     const handleLogIn = async () => {
-        console.log('login')
         let route = 'user/login'
         let response = Signin({ username, password, route, setloading, seterror })
         let data = await response
-        console.log(data)
         if (data?.status === 'error') toast.error(data.message)
         if (error) toast.error('unable to create account an error occured')
         if (data?.status === 'success') {
