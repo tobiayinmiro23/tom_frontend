@@ -20,6 +20,8 @@ const Photo = () => {
     const [result, setresult] = useState<allCommentsT | []>([])
     const [loading, setloading] = useState<boolean>(true)
     const [error, seterror] = useState<boolean>(false)
+    const [imageLoaded, setimageLoaded] = useState(false)
+
 
     let route = 'comments'
     const editCommentRef = useRef(new Array())
@@ -92,48 +94,52 @@ const Photo = () => {
             <div className='pt-[2rem]'>
                 {loading && <div ><div className='loader'><Loader /></div></div>}
                 <div key={photo?.id} className='w-[85%] m-[auto]'>
-                    <div className='h-[fit-content]'><img src={photo?.urls.full} alt="" /></div>
-                    <div className='flex items-start justify-between my-[1rem]'>
-                        <h2 className='text-[1.1rem] font-bold '>{photo?.user.username}</h2>
-                        {photo?.id && <div onClick={displayAddCommentModal}><CommentModal comments={comments} setcomments={setcomments} AddComment={handleAddComment} children={<MessageSquareText className='cursor-pointer' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>}
-                    </div>
-                    <p>{photo?.alt_description !== null ? photo?.alt_description : photo?.description}</p>
+                <div className='h-[fit-content]'><img onLoad={() => setimageLoaded(true)} src={photo?.urls.full} alt="" /></div>
                     {
-                        photo?.tags[0]?.title &&
+                        imageLoaded &&
                         <div>
-                             <h2 className='text-[1.1rem] my-[0.6rem] font-bold '>tags</h2>
-
-                            <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.5rem] mr-[2rem]'>{item.title}</i>)}</div>
-                        </div>
-                    }
-                    <div>
-                        {
-                            photo?.id &&
-                            <div >
-                                {
-                                    result?.map((item, index) => {
-                                        return <div>
-                                            <h2 className='text-[1.1rem] font-bold '>Comments</h2>
-                                            <div key={item.id} className='mt-[0.7rem]'>
-                                                <div className='flex justify-between'>
-                                                    <h3 className='font-bold'>{item.username}</h3>
-                                                    {item.usersid === appData?.userid &&
-                                                        <div className='flex justify-end'>
-                                                            <DeleteCommentModal commentid={item.id} deleteComment={deleteComment} />
-                                                            <div onClick={() => displayUpdateCommentModal(index)} ><CommentModal comments={comments} commentid={item.id} setcomments={setcomments} index={index} handleUpdateComment={handleUpdateComment} children={<SquarePen className='ml-[1.2rem]' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>
-                                                        </div>
-                                                    }
-                                                </div>
-                                                <p ref={editCommentRef.current[index]} >{item.comments}</p>
-                                                <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item.time}</p>
-                                            </div>
-                                        </div>
-                                    })
-                                }
+                            <div className='flex items-start justify-between my-[1rem]'>
+                                <h2 className='text-[1.1rem] font-bold '>{photo?.user.username}</h2>
+                                {photo?.id && <div onClick={displayAddCommentModal}><CommentModal comments={comments} setcomments={setcomments} AddComment={handleAddComment} children={<MessageSquareText className='cursor-pointer' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>}
                             </div>
-                        }
+                            <p>{photo?.alt_description !== null ? photo?.alt_description : photo?.description}</p>
+                            {
+                                photo?.tags[0]?.title &&
+                                <div>
+                                    <h2 className='text-[1.1rem] my-[0.6rem] font-bold '>tags</h2>
+                                    <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.5rem] mr-[2rem]'>{item.title}</i>)}</div>
+                                </div>
+                            }
+                            <div>
+                                {
+                                    photo?.id &&
+                                    <div >
+                                        {
+                                            result?.map((item, index) => {
+                                                return <div>
+                                                    <h2 className='text-[1.1rem] font-bold '>Comments</h2>
+                                                    <div key={item.id} className='mt-[0.7rem]'>
+                                                        <div className='flex justify-between'>
+                                                            <h3 className='font-bold'>{item.username}</h3>
+                                                            {item.usersid === appData?.userid &&
+                                                                <div className='flex justify-end'>
+                                                                    <DeleteCommentModal commentid={item.id} deleteComment={deleteComment} />
+                                                                    <div onClick={() => displayUpdateCommentModal(index)} ><CommentModal comments={comments} commentid={item.id} setcomments={setcomments} index={index} handleUpdateComment={handleUpdateComment} children={<SquarePen className='ml-[1.2rem]' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                        <p ref={editCommentRef.current[index]} >{item.comments}</p>
+                                                        <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item.time}</p>
+                                                    </div>
+                                                </div>
+                                            })
+                                        }
+                                    </div>
+                                }
 
-                    </div>
+                            </div>
+                        </div>
+                    }    
                 </div>
             </div>
         </div>
