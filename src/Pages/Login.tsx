@@ -74,7 +74,7 @@ const LoginPage = () => {
                         <input placeholder="password" onChange={(e) => setpassword(e.target.value)} value={password} className='w-[84%] rounded-[0.2rem] px-[0.4rem] py-[0.56rem] bg-[none] outline-none' type="password" />
                     </div>
                     {signup && <p onClick={displayLogin} className='mt-[0.8rem] cursor-pointer'>already have an account? log in</p>}
-                    <button onClick={(e) => handleButton(e)} disabled={loading} className="w-[85%] rounded-[0.2rem] text-[white] px-[3rem] py-[0.4rem] bg-[#3cabbf] font-bold cursor-pointer mt-[1.4rem] mb-[1.7rem] outline-none hover:bg-[#007991]">
+                    <button onClick={(e) => handleButton(e)} disabled={loading} className="w-[85%] shadow-xl rounded-[0.2rem] text-[white] px-[3rem] py-[0.4rem] bg-[#3cabbf] font-bold cursor-pointer mt-[1.4rem] mb-[1.7rem] outline-none hover:bg-[#007991]">
                         <h3 >{signup ? 'Create account' : 'Log in'}</h3>
                     </button>
                 </form>
