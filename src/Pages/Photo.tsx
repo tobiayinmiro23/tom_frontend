@@ -20,7 +20,6 @@ const Photo = () => {
     const [result, setresult] = useState<allCommentsT | []>([])
     const [loading, setloading] = useState<boolean>(true)
     const [error, seterror] = useState<boolean>(false)
-    const [imageLoaded, setimageLoaded] = useState(false)
 
 
     let route = 'comments'
@@ -95,8 +94,7 @@ const Photo = () => {
                 {loading && <div ><div className='loader'><Loader /></div></div>}
                 <div key={photo?.id} className='w-[85%] m-[auto]'>
                 <div className='h-[fit-content]'><img onLoad={() => setimageLoaded(true)} src={photo?.urls.full} alt="" /></div>
-                    {
-                        imageLoaded &&
+                  
                         <div>
                             <div className='flex items-start justify-between my-[1rem]'>
                                 <h2 className='text-[1.1rem] font-bold '>{photo?.user.username}</h2>
@@ -139,7 +137,6 @@ const Photo = () => {
 
                             </div>
                         </div>
-                    }    
                 </div>
             </div>
         </div>
