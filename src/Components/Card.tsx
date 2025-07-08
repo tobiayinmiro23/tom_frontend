@@ -18,7 +18,7 @@ const Card = ({ result, page, setpage }: cardI) => {
                 {result?.map((item) => {
                     return <div key={item.id} className='cursor-pointer my-[2rem] mx-[1%] w-[24rem] max-[846px]:w-[45%]'>
                         <Link to={`/photo/${item.id}`}>
-                            <div className={item.urls.small !== '' ? 'w-[100%] ' : 'w-[100%] h-[12rem]'} ><img src={item.urls.small} alt="" /></div>
+                            <div className='w-[100%]' ><img className='' src={item.urls.small} alt="" /></div>
                             <div className='bg-[white] pl-[0.5rem] pb-[1rem] pt-[0.5rem] '>
                                 <div >
                                     <h3 className=' w-[98%] leading-[1.1rem] h-[1.2rem] overflow-hidden text-[1.1rem] font-bold mb-[0.5rem]'>{item.user.username}</h3>
