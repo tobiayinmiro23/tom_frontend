@@ -34,7 +34,7 @@ const Photo = () => {
         //function to get the details of an individual photo
         GetPhoto({ setloading, photoid, seterror, setphoto })
         // function to get the comments attached to an image
-        GetComments()
+        if (photo?.id !== '') GetComments()
     }, [])
 
     // function to display modal
@@ -101,7 +101,8 @@ const Photo = () => {
                     {
                         photo?.tags[0]?.title &&
                         <div>
-                            <h2 className='text-[1.1rem] font-bold '>tags</h2>
+                             <h2 className='text-[1.1rem] my-[0.6rem] font-bold '>tags</h2>
+
                             <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.5rem] mr-[2rem]'>{item.title}</i>)}</div>
                         </div>
                     }
