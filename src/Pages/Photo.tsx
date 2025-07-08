@@ -105,7 +105,7 @@ const Photo = () => {
                                 photo?.tags[0]?.title &&
                                 <div>
                                     <h2 className='text-[1.1rem] my-[0.6rem] font-bold '>tags</h2>
-                                    <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.5rem] mr-[2rem]'>{item.title}</i>)}</div>
+                                    <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className='mb-[0.8rem] mr-[0.9rem]'>{item.title}</i>)}</div>
                                 </div>
                             }
                             <div>
