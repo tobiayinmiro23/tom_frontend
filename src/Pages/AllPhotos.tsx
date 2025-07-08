@@ -19,7 +19,7 @@ const AllPhotos = () => {
             <Header />
             {loading && <div className='loader'><Loader /></div>}
             {dataReady && <Card result={result} page={page} setpage={setpage} />}
-            {error && <h1>An error occured</h1>}
+            {error && <h1 className='text-center font-bold text-[1.9rem] mt-[4rem]'>An error occured</h1>}
         </div>
     )
 }
