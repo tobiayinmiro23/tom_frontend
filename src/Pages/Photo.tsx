@@ -93,7 +93,7 @@ const Photo = () => {
             <div className='pt-[2rem]'>
                 {loading && <div ><div className='loader'><Loader /></div></div>}
                 <div key={photo?.id} className='w-[85%] m-[auto]'>
-                <div className='h-[fit-content]'><img onLoad={() => setimageLoaded(true)} src={photo?.urls.full} alt="" /></div>
+                <div className='h-[fit-content]'><img src={photo?.urls.full} alt="" /></div>
                   
                         <div>
                             <div className='flex items-start justify-between my-[1rem]'>
