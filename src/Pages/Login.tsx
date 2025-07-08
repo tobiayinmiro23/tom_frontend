@@ -43,7 +43,7 @@ const LoginPage = () => {
         let response = Signin({ username, password, route, setloading, seterror })
         let data = await response
         if (data?.status === 'error') toast.error(data.message)
-        if (error) toast.error('unable to create account an error occured')
+        if (error) toast.error('unable to login an error occured')
         if (data?.status === 'success') {
             appData?.setuserid(data.message.id)
             appData?.setusername(data.message.username)
