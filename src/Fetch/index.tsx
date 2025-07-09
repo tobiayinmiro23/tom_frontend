@@ -41,7 +41,7 @@ export function GetPhoto({ setloading, photoid, seterror, setphoto }: getPhotoI)
     seterror(false)
     const options = {
         method: 'GET',
-        url: `https://api.unsplash.com/photos/${photoid}?client_id=${apiKey}`
+        url: `https://api.unsplash.com/photos/${photoid}?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU`
     };
     axios.request(options).then(res => {
         setloading(false)
