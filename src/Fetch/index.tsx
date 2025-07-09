@@ -12,13 +12,15 @@ export function GetAllPhotos({ setloading, setdataReady, setresult, seterror, pa
         url: `https://api.unsplash.com/photos/?client_id=${apiKey}&page=${page}&per_page=12`
     };
     axios.request(options).then(res => {
+        console.log(res)
         setloading(false)
         setresult(res?.data)
         setdataReady(true)
-    }).catch(() => {
+    }).catch((error) => {
         setloading(false)
         seterror(true)
         setdataReady(false)
+        console.log(error)
     })
 }
 // for loading more photos
