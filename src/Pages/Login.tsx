@@ -67,7 +67,7 @@ const LoginPage = () => {
                 <form action="">
                     <div className="flex w-[90%] items-center m-[auto] mt-[3rem] border-b-[2px] border-[black]">
                         <User size={24} strokeWidth={1.2} />
-                        <input placeholder="Email" onChange={(e) => setusername(e.target.value)} value={username} className='w-[84%] rounded-[0.2rem] px-[0.4rem] py-[0.56rem] bg-[none] outline-none' type="username" />
+                        <input placeholder="username" onChange={(e) => setusername(e.target.value)} value={username} className='w-[84%] rounded-[0.2rem] px-[0.4rem] py-[0.56rem] bg-[none] outline-none' type="username" />
                     </div>
                     <div className="flex w-[90%] items-center m-[auto] mt-[3rem] border-b-[2px] border-[black]">
                         <Lock size={20.5} strokeWidth={1.2} />
