@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getAllPhotosI, loadMorePhotosI, allPhotosMappedT, getPhotoI, signinI, addCommentI, commentI } from "../Types";
+const apiKey = import.meta.env.API_KEY;
 
 // get all photos
 export function GetAllPhotos({ setloading, setdataReady, setresult, seterror, page }: getAllPhotosI) {
@@ -9,16 +10,18 @@ export function GetAllPhotos({ setloading, setdataReady, setresult, seterror, pa
     seterror(false)
     const options = {
         method: 'GET',
-        url: `https://api.unsplash.com/photos/?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU&page=${page}&per_page=12`
+        url: `https://api.unsplash.com/photos/?client_id=${apiKey}&page=${page}&per_page=12`
     };
     axios.request(options).then(res => {
+        console.log(res)
         setloading(false)
         setresult(res?.data)
         setdataReady(true)
-    }).catch(() => {
+    }).catch((error) => {
         setloading(false)
         seterror(true)
         setdataReady(false)
+        console.log(error)
     })
 }
 // for loading more photos
@@ -26,7 +29,7 @@ export function LoadMorePhotos({ setloadMore, result, page }: loadMorePhotosI) {
     setloadMore(true)
     const options = {
         method: 'GET',
-        url: `https://api.unsplash.com/photos/?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU&page=${page}&per_page=12`
+        url: `https://api.unsplash.com/photos/?client_id=${apiKey}&page=${page}&per_page=12`
     };
     axios.request(options).then(res => {
         res?.data.map((item: allPhotosMappedT) => result?.push(item))
@@ -41,7 +44,7 @@ export function GetPhoto({ setloading, photoid, seterror, setphoto }: getPhotoI)
     seterror(false)
     const options = {
         method: 'GET',
-        url: `https://api.unsplash.com/photos/${photoid}?client_id=3ALI7oiWjQD3B2aqBzlqsJL64T_-9qsknDF6KWFYoEU`
+        url: `https://api.unsplash.com/photos/${photoid}?client_id=${apiKey}`
     };
     axios.request(options).then(res => {
         setloading(false)
