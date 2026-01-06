@@ -61,7 +61,7 @@ const LoginPage = () => {
     return (
         <div className="Signup">
             {loading && <div className='loaderWrapper'><div className='loader'><Loader /></div></div>}
-            <div style={{ boxShadow: ' 0px 2px 5px rgba(0, 0, 0, 0.4)' }} className='w-[20rem] m-[auto] text-center pt-[0.5rem] bg-[white] rounded-[0.38rem]  max-[345px]:w-[90%]'>
+            <div style={{ boxShadow: ' 0px 2px 5px rgba(0, 0, 0, 0.4)' }} className='w-[20rem] m-[auto] text-center pt-[0.5rem] bg-[white] rounded-[0.38rem]  max-[345px]:w-[85%]'>
                 <h1 className='pt-[1rem] text-[1.9rem] font-bold'>{signup ? 'Sign Up' : 'Log in'}</h1>
                 <form action="">
                     <div className="flex w-[88%] items-center m-[auto] mt-[2.6rem] border-[1px] border-[#d4d2d2] rounded-sm px-1.5">
@@ -81,5 +81,6 @@ const LoginPage = () => {
         </div>
     )
 }
+
 
 export default LoginPage
