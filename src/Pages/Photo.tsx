@@ -30,9 +30,7 @@ const Photo = () => {
 
     const GetComments = async () => {
         let route = `comments/${photoid}`
-        let response = GetComment({ setloading, route, setresult, seterror })
-        let data = await response
-        setresult(data)
+        GetComment({ setloading, route, setresult, seterror })
     }
     useEffect(() => {
         const img = imgRef.current;
@@ -113,7 +111,7 @@ const Photo = () => {
                         imgLoaded &&
                         <div>
                             <div className='flex items-start justify-between my-[1rem]'>
-                                <h2 className='text-[1.1rem] font-bold '>{photo?.user.username}</h2>
+                                <h2 className='text-[1.1rem] font-bold '>{photo?.user?.username}</h2>
                                 {photo?.id && <div onClick={displayAddCommentModal}><CommentModal comments={comments} setcomments={setcomments} AddComment={handleAddComment} children={<MessageSquareText className='cursor-pointer' size={22} strokeWidth={1.2} />} addcomment={addcomment} /></div>}
                             </div>
                             <p>{photo?.alt_description !== null ? photo?.alt_description : photo?.description}</p>
@@ -121,7 +119,7 @@ const Photo = () => {
                                 photo?.tags[0]?.title &&
                                 <div>
                                     <h2 className='text-[1.1rem] my-[0.6rem] font-bold '>tags</h2>
-                                    <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.8rem] mr-[0.9rem]'>{item.title}</i>)}</div>
+                                    <div className='flex flex-wrap'>{photo?.tags.map((item) => <i key={item.title} className=' mb-[0.8rem] mr-[0.9rem]'>{item?.title}</i>)}</div>
                                 </div>
                             }
                             <div>
@@ -132,7 +130,7 @@ const Photo = () => {
                                         {
                                             result?.map((item, index) => {
                                                 return <div key={item.id}>
-                                                    <div key={item.id} className='mt-[0.7rem]'>
+                                                    <div className='mt-[0.7rem]'>
                                                         <div className='flex justify-between'>
                                                             <h3 className='font-bold'>{item?.username ? item.username : 'User'}</h3>
                                                             {item.usersid === appData?.userid &&
@@ -142,8 +140,8 @@ const Photo = () => {
                                                                 </div>
                                                             }
                                                         </div>
-                                                        <p ref={editCommentRef.current[index]} >{item.comments}</p>
-                                                        <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item.time}</p>
+                                                        <p ref={editCommentRef.current[index]} >{item?.comments}</p>
+                                                        <p className=' text-[0.8rem] mt-[0.4rem] text-[#4e4b4b]'>{item?.time}</p>
                                                     </div>
                                                 </div>
                                             })
