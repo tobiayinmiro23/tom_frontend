@@ -16,7 +16,8 @@ const LoginPage = () => {
     const [password, setpassword] = useState('')
     const [username, setusername] = useState('')
     const [error, seterror] = useState(false)
-
+    const btnStyle1 = "w-[87%] rounded-[0.2rem] text-[white] px-[3rem] py-[0.4rem] shadow-xl bg-[#3cabbf] font-bold cursor-pointer mt-[1.4rem] mb-[1.7rem] outline-none hover:bg-[#007991]"
+    const btnStyle2 = `${btnStyle1} mt-[2rem]`
 
     useEffect(() => {
         if (window.location.pathname.split('/')[1] === 'signup') setsignup(true)
@@ -61,7 +62,7 @@ const LoginPage = () => {
     return (
         <div className="Signup">
             {loading && <div className='loaderWrapper'><div className='loader'><Loader /></div></div>}
-            <div style={{ boxShadow: ' 0px 2px 5px rgba(0, 0, 0, 0.4)' }} className='w-[20rem] m-[auto] text-center pt-[0.5rem] bg-[white] rounded-[0.38rem]  max-[345px]:w-[85%]'>
+            <div style={{ boxShadow: ' 0px 2px 5px rgba(0, 0, 0, 0.4)' }} className='w-[20rem] m-[auto] text-center pt-[0.5rem] bg-[white] rounded-[0.38rem]  max-[345px]:w-[90%]'>
                 <h1 className='pt-[1rem] text-[1.9rem] font-bold'>{signup ? 'Sign Up' : 'Log in'}</h1>
                 <form action="">
                     <div className="flex w-[88%] items-center m-[auto] mt-[2.6rem] border-[1px] border-[#d4d2d2] rounded-sm px-1.5">
@@ -73,7 +74,7 @@ const LoginPage = () => {
                         <input placeholder="password" onChange={(e) => setpassword(e.target.value)} value={password} className='w-[84%] rounded-[0.2rem] px-[0.4rem] py-[0.56rem] bg-[none] outline-none' type="password" />
                     </div>
                     {signup && <p onClick={displayLogin} className='mt-[0.8rem] cursor-pointer'>already have an account? log in</p>}
-                    <button onClick={(e) => handleButton(e)} disabled={loading} className="w-[90%] rounded-[0.2rem] text-[white] px-[3rem] py-[0.4rem] shadow-xl bg-[#3cabbf] font-bold cursor-pointer mt-[1.4rem] mb-[1.7rem] outline-none hover:bg-[#007991]">
+                    <button onClick={(e) => handleButton(e)} disabled={loading} className={(signup === false) ? btnStyle2 : btnStyle1}>
                         <h3 >{signup ? 'Create account' : 'Log in'}</h3>
                     </button>
                 </form>
@@ -81,6 +82,5 @@ const LoginPage = () => {
         </div>
     )
 }
-
 
 export default LoginPage
