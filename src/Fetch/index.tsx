@@ -135,7 +135,7 @@ export const DeleteComment = async ({ commentid, setloading, route, seterror }: 
         seterror(true)
     }
 }
-export const GetComment = async ({ setloading, route, seterror }: commentI) => {
+export const GetComment = async ({ setloading, route, seterror, setresult }: commentI) => {
     setloading(true)
     try {
         let response = axios({
@@ -145,8 +145,7 @@ export const GetComment = async ({ setloading, route, seterror }: commentI) => {
         let data = await response
         setloading(false)
         let reversedData = data.data.message.reverse()
-
-        return reversedData
+        if (setresult) setresult(reversedData)
     } catch {
         setloading(false)
         seterror(true)
