@@ -36,9 +36,6 @@ export default function DeleteCommentModal({ commentid, deleteComment }: deleteC
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <button type="submit" onClick={handledeleteComment} className="px-3 py-1 rounded-md text-[white]  bg-[#201e1e]  outline-none hover:bg-[#007991]" >Continue </button>
-
-                    <button > </button>
-                    {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
