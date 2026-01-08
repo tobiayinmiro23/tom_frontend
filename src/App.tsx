@@ -2,6 +2,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AllPhotos, Photo, Login } from './AllFiles'
 import './App.css'
 function App() {
+   const Ping = () => {
+    fetch('https://tom-backend-sibt.onrender.com/')
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+  Ping()
+
 
   return (
     <>
