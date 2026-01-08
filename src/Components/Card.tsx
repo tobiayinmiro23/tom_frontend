@@ -49,13 +49,27 @@ const Card = ({ result, page, setpage }: cardI) => {
                                         />
                                     </h3>
                                     <div className="text-sm line-clamp-2">
-                                        <LinesEllipsis
-                                            text={item?.alt_description ?? item?.description}
-                                            maxLine='1'
-                                            ellipsis='...'
-                                            trimRight
-                                            basedOn='letters'
-                                        />
+                                        {
+                                            item?.alt_description ?
+                                                <LinesEllipsis
+                                                    text={item?.alt_description}
+                                                    maxLine='1'
+                                                    ellipsis='...'
+                                                    trimRight
+                                                    basedOn='letters'
+                                                />
+                                                :
+                                                item?.description ?
+                                                    <LinesEllipsis
+                                                        text={item?.description}
+                                                        maxLine='1'
+                                                        ellipsis='...'
+                                                        trimRight
+                                                        basedOn='letters'
+                                                    />
+                                                    :
+                                                    " "
+                                        }
                                     </div>
                                 </div>
                             }
