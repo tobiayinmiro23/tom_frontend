@@ -7,19 +7,21 @@ import { LoadMorePhotos } from '../Fetch'
 const Card = ({ result, page, setpage }: cardI) => {
     const [loadMore, setloadMore] = useState<boolean>(false)
     const [displayImageInfo, setdisplayImageInfo] = useState(false)
+    const [displayLoadMore, setdisplayLoadMore] = useState(false)
 
-    const timer = useCallback(() => {
+    const timer = useCallback((setTimer: (b: boolean) => void) => {
         setTimeout(() => {
-            setdisplayImageInfo(true)
+            setTimer(true)
         }, 760);
     }, [])
 
-    timer()
+    if (result !== null) timer(setdisplayLoadMore)
+    timer(setdisplayImageInfo)
     const getMorePhotos = () => {
         setpage(++page)
         LoadMorePhotos({ setloadMore, result, page, setpage })
         setdisplayImageInfo(false)
-        timer()
+        timer(setdisplayImageInfo)
     }
 
     return (
@@ -79,7 +81,7 @@ const Card = ({ result, page, setpage }: cardI) => {
             </div>
 
             {
-                result?.length !== null &&
+                displayLoadMore &&
                 <div className='my-[2rem] text-center'>
                     {  // to determine wether to show the loading spinner animation or the load more button
                         loadMore ?
