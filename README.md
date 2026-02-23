@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# tom_frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A art gallery website for viewing images built with react, vite, typescript, shadcn and experss js.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- sign up
+- login in
+- responsive UI
+- loader
+- toasts for message notification
+- view all photos functionality
+- view individual photo functionality
+- view individual photo tags
+- add comments functionality
+- view comments functionality 
+- edit comments functionality 
+- delete comments functionality
+- integration with supabase 
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📋 Prerequisites
+
+- Node.js >= 18
+- npm or yarn
+
+
+## 🛠️ Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/tobiayinmiro23/tom_frontend.git
+   ```
+
+2. **Enter the directory**
+   ```bash
+   cd tom_frontend
+   ```
+   
+3. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 🏗️ Project Structure
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+├── dist/               # THe npm build
+├── public/               
+│   └── image/          # Stores images accessible as static assets
+├── src/                # Main source code
+│   ├── components/     # Reusable UI components
+│   ├── context/      # For global state management
+│   ├── fetch/        # contains all the fetch requests made to different endpoints
+│   ├── pages/          # Application screens
+│   ├── types/      # Contains all the types used
+│   ├── assets/        # static files
+│   ├── lib/        # For safely handling Tailwind CSS classes and preventing conflicts.
+│   ├── AllFiles.jsx    # Centralized imports and exports for easy access to all components and pages from a single file
+└── README.md           # Project documentation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
 ```
+
+
+## 📦 Dependencies
+
+- **tailwind css**:  *for styling html elements*  
+- **react-router-dom**:  *for navigating*  
+- **react-spinners**:  *for loading animation*
+- **react-lines-ellipsis**:  *for truncating/shortening lengthy texts and replacing them with three dots*
+- **sonner**:  *for creating toasts/message notification*
+- **axios**:  *for handling http requests*
+- 
+
