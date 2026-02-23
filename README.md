@@ -1,6 +1,6 @@
 # tom_frontend
 
-A art gallery website for viewing images built with react, vite, typescript, shadcn and experss js.
+A art gallery website for viewing images built with react, vite, tailwind, typescript, shadcn and experss js.
 
 ## 🚀 Features
 
@@ -62,7 +62,7 @@ A art gallery website for viewing images built with react, vite, typescript, sha
 │   ├── pages/          # Application screens
 │   ├── types/      # Contains all the types used
 │   ├── assets/        # static files
-│   ├── lib/        # For safely handling Tailwind CSS classes and preventing conflicts.
+│   ├── lib/        # shadcn helper for safely handling Tailwind CSS classes and preventing conflicts.
 │   ├── AllFiles.jsx    # Centralized imports and exports for easy access to all components and pages from a single file
 └── README.md           # Project documentation
 
@@ -77,5 +77,14 @@ A art gallery website for viewing images built with react, vite, typescript, sha
 - **react-lines-ellipsis**:  *for truncating/shortening lengthy texts and replacing them with three dots*
 - **sonner**:  *for creating toasts/message notification*
 - **axios**:  *for handling http requests*
-- 
+- **shadcn**: *provides prebuilt UI components and patterns built on Radix UI and Tailwind CSS*
+- **class-variance-authority**: *for creating reusable, variant-based component styles (cva) in Tailwind CSS*
+- **clsx**: *for conditionally combining CSS class names into a single string*
+- **tailwind-merge**: *for merging Tailwind CSS class names and resolving conflicts*
+- **lucide-react**: *for using a library of React-ready icons in components*
+- **@radix-ui/react-alert-dialog**: *for creating accessible alert dialog modals in React applications*
+- **@radix-ui/react-dialog**: *for building fully accessible, customizable modal dialogs in React*
+- **@radix-ui/react-slot**: *for composing components by passing child elements into a “slot” while preserving props and styling*
+- **tw-animate-css**: *for adding prebuilt CSS animations with Tailwind utility classes*
+
 
