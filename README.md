@@ -52,7 +52,7 @@ A art gallery website for viewing images built with react, vite, tailwind, types
 
 ```
 
-├── dist/               # THe npm build
+├── dist/               # The npm build
 ├── public/               
 │   └── image/          # Stores images accessible as static assets
 ├── src/                # Main source code
