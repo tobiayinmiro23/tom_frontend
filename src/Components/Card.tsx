@@ -15,8 +15,10 @@ const Card = ({ result, page, setpage }: cardI) => {
         }, 760);
     }, [])
 
-    if (result !== null) timer(setdisplayLoadMore)
-    timer(setdisplayImageInfo)
+    uesEffect(()=>{
+      if (result !== null) timer(setdisplayLoadMore)
+        timer(setdisplayImageInfo)  
+    },[result])
     const getMorePhotos = () => {
         setpage(++page)
         LoadMorePhotos({ setloadMore, result, page, setpage })
